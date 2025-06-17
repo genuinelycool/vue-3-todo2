@@ -1,7 +1,8 @@
 <template>
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer">
-      <!--  -->
+      <RouterLink to="/Home">Go to Home</RouterLink>
+      <RouterLink to="/About">Go to About</RouterLink>
     </v-navigation-drawer>
 
     <v-app-bar>
@@ -17,13 +18,13 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
+import { ref } from 'vue'
 
-  const drawer = ref(null)
+const drawer = ref(null)
 </script>
 
 <script>
-  export default {
-    data: () => ({ drawer: null }),
-  }
+export default {
+  data: () => ({ drawer: null }),
+}
 </script>
