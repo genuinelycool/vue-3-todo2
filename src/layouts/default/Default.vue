@@ -1,10 +1,9 @@
 <template>
   <v-app>
-  <!-- ALERT -->
-    <View></View>
+    <default-view />
   </v-app>
 </template>
 
 <script setup>
-  import View from './view.vue'
+  import DefaultView from './View.vue'
 </script>
