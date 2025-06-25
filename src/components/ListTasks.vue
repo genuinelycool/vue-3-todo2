@@ -1,12 +1,17 @@
 <template>
   <div>
     <v-list lines="three" select-strategy="classic">
-      <v-list-subheader>General</v-list-subheader>
+      <v-list-subheader>Tasks</v-list-subheader>
 
-      <v-list-item v-for="(task, index) in taskStore.tasks" :key="index" :value="index">
-        <template v-slot:prepend="{ isActive }">
+      <v-list-item 
+      v-for="(task, index) in taskStore.tasks" 
+      :key="index" 
+      :value="index"
+      @click="taskStore.toggleDoneTask(index)"
+      >
+        <template v-slot:prepend="{ }">
           <v-list-item-action start>
-            <v-checkbox-btn :model-value="isActive"></v-checkbox-btn>
+            <v-checkbox-btn :model-value="task.done"></v-checkbox-btn>
           </v-list-item-action>
         </template>
 
@@ -42,9 +47,9 @@
 </template>
 
 <script setup>
-import DialogTaskField from "@/components/DialogTaskFields.vue";
-import DialogDelete from "@/components/DialogDelete.vue";
-import { useTaskStore} from '@/store/task'
+import DialogTaskField from "@/components/dialogs/DialogTaskFields.vue";
+import DialogDelete from "@/components/dialogs/DialogDelete.vue";
+import { useTaskStore} from '@/stores/task'
 
 const taskStore = useTaskStore();
 

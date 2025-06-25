@@ -1,34 +1,65 @@
+/**
+ * router/index.ts
+ *
+ * Automatic routes for `./src/pages/*.vue`
+ */
+
 // Composables
 import { createRouter, createWebHistory } from 'vue-router'
 
-const routes = [
+import LayoutLogin from '@/layouts/LayoutLogin.vue'
+import DefaultLayout from '@/layouts/default.vue'
+
+const manualRoutes = [
   {
-    path: '/',
-    component: () => import('@/layouts/default/Default.vue'),
+    path: "/login",
+    component: LayoutLogin,
     children: [
       {
-        path: '',
-        name: 'Home',
-        component: () => import('@/views/Home.vue'),
-      },
-    ],
+        path: "",
+        name: "Login",
+        component: () => import('@/pages/Login.vue')  // ✅ Fixed
+      }
+    ]
   },
   {
-    path: '/about',
-    component: () => import('@/layouts/default/Default.vue'),
+    path: "/",
+    component: DefaultLayout,
     children: [
       {
-        path: '',
-        name: 'About',
-        component: () => import('@/views/About.vue'),
-      },
-    ],
+        path: "",
+        name: "home",
+        component: () => import('@/pages/Home.vue')  // ✅ Fixed
+      }
+    ]
+  },
+  {
+    path: "/home",
+    component: DefaultLayout,
+    children: [
+      {
+        path: "",
+        name: "home",
+        component: () => import('@/pages/Home.vue')  // ✅ Fixed
+      }
+    ]
+  },
+  {
+    path: "/about",
+    component: DefaultLayout,
+    children: [
+      {
+        path: "",
+        name: "about",
+        component: () => import('@/pages/About.vue')  // ✅ Fixed
+      }
+    ]
   },
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: manualRoutes
 })
 
 export default router
